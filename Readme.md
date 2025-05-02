@@ -25,3 +25,6 @@ docker compose -f docker-compose.yaml -f docker-compose.traefik.yaml up -d --bui
 	•	https://ui.mydomain.com에서 React 앱 확인
 	•	https://api.mydomain.com/docs에서 FastAPI 문서 확인
 	•	HTTPS 인증서가 자동 생성되는지 로그로 확인 (acme.json)
+
+```bash python scripts/generate-compose.py
+docker-compose -f docker-compose.generated.yaml -f docker-compose.traefik.yaml up -d

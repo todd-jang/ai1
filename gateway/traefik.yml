@@ -14,7 +14,16 @@ services:
       - "--certificatesresolvers.myresolver.acme.email=admin@example.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     labels:
-  - "traefik.http.middlewares.dashboard-auth.basicauth.users=admin:$apr1$b9unyucT$rO518cMvZGLBSgm5SLgnb/"
+      - "traefik.enable=true"
+
+  # HTTPS Router Host()는 ${DOMAIN}이 아닌 실제 문자열로 확정해야 작동합니다.
+      - "traefik.http.routers.react.rule=Host(`${FRONTEND_HOST}`)"
+      - "traefik.http.routers.react.entrypoints=websecure"
+      - "traefik.http.routers.react.tls.certresolver=myresolver"
+
+  # Service Binding
+      - "traefik.http.services.react.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.dashboard-auth.basicauth.users=admin:$apr1$b9unyucT$rO518cMvZGLBSgm5SLgnb/"
     ports:
       - "80:80"
       - "443:443"

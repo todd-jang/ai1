@@ -10,3 +10,6 @@ http://grafana.localhost
 Grafana
 
 docker ps & traefik dashboard: http://localhost:8080 → 연결 상태 확인
+
+
+docker compose -f docker-compose.yaml -f docker-compose.traefik.yaml up -d --build

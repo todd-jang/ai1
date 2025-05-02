@@ -13,6 +13,8 @@ services:
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=admin@example.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    labels:
+  - "traefik.http.middlewares.dashboard-auth.basicauth.users=admin:$apr1$b9unyucT$rO518cMvZGLBSgm5SLgnb/"
     ports:
       - "80:80"
       - "443:443"
